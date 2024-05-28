@@ -2,12 +2,12 @@ import type { Floor } from "./Floor";
 
 export default class Timer {
     number: number; 
-    remainingTime: number | null; 
+    remainingTime: number ; 
     timerElement: HTMLElement; 
 
     constructor(floor: Floor) {
         this.number = floor.number; 
-        this.remainingTime = null; 
+        this.remainingTime = 0; 
         this.timerElement = this.createTimer(floor); 
     }
 
@@ -29,7 +29,7 @@ export default class Timer {
 
             // Set an interval to update the timer every 500 milliseconds (0.5 seconds)
             const interval = setInterval(() => {
-                if (this.remainingTime === null || this.remainingTime <= 0.5) {
+                if ( this.remainingTime <= 0.5) {
                     this.timerElement.style.display = 'none'; // Hide the timer element
                     clearInterval(interval); // Clear the interval when time is up
                 } else {

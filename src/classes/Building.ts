@@ -81,7 +81,7 @@ export  class Building {
         // If the elevator has destination floors, calculate time based on the last destination
         if (elevator.destinationFloors.length > 0) {
             const lastDestinationFloor = elevator.destinationFloors[elevator.destinationFloors.length - 1];
-            const remainingTimeOnTimer = lastDestinationFloor.timer.remainingTime ?? 0;
+            const remainingTimeOnTimer = lastDestinationFloor.timer.remainingTime;
             // add the remaining time and more 2 for the stop
             time += remainingTimeOnTimer + 2;
             // Adds the time from the last floor in the destination floors to the current floor
