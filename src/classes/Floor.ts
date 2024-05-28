@@ -17,11 +17,11 @@ export class Floor {
 
     // Method to call the nearest elevator to this floor
     callElevator() {
-        const elevator = this.building.findNearestElevator(this); // Find the nearest elevator
         if (this.anElevatorOnFloor() || this.anElevatorEnRoute()) {
             console.log(`An elevator is already present or en route to floor ${this.number}.`);
             return;
         } else {
+            const elevator = this.building.findNearestElevator(this); // Find the nearest elevator
             this.changeColor(); 
             elevator.call(this); 
             console.log(`Elevator ${elevator.number} called to floor ${this.number}`);
@@ -54,16 +54,16 @@ export class Floor {
     changeColor() {
         const { button } = this.callButton;
         if (button.style.color === 'green') {
-            button.style.color = 'hsla(0, 0%, 15%, 0.8)'; // Set button color to default
+            button.style.color = 'hsla(0, 0%, 15%, 0.8)'; 
         } else {
-            button.style.color = 'green'; // Set button color to green
+            button.style.color = 'green'; 
         }
     }
 
     // Method to play the arrival sound when the elevator arrives
     playArrivalSound() {
-        const audio = new Audio('ding.mp3'); // Create a new audio object
-        audio.play(); // Play the arrival sound
+        const audio = new Audio('ding.mp3'); 
+        audio.play(); 
     }
 
 }
