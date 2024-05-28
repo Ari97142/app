@@ -1,11 +1,26 @@
-/**
- * This file is just a silly example to show everything working in the browser.
- * When you're ready to start on your site, clear the file. Happy hacking!
- **/
+import {BuildingManager} from "./classes/BuildingManager";
+import config from '../config/config.json';
 
-import confetti from 'canvas-confetti';
+class SystemManager {
+    buildingManager: BuildingManager;
 
-confetti.create(document.getElementById('canvas') as HTMLCanvasElement, {
-  resize: true,
-  useWorker: true,
-})({ particleCount: 200, spread: 200 });
+    constructor() {
+        this.buildingManager = new BuildingManager();
+    }
+
+    initialize() {
+        const addBuildingBtn = document.getElementById('add-building-btn');
+        addBuildingBtn?.addEventListener('click', this.buildingManager.promptForBuildingDetails.bind(this.buildingManager));
+
+        this.addBuildingsFromConfig();
+    }
+
+    addBuildingsFromConfig() {
+        config.buildings.forEach((buildingConfig: { numFloors: number; numElevators: number }) => {
+            this.buildingManager.addBuilding(buildingConfig.numFloors, buildingConfig.numElevators);
+          });
+    }
+}
+
+const systemManager = new SystemManager();
+systemManager.initialize();

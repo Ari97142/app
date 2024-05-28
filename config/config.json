@@ -1,0 +1,9 @@
+{
+    "buildings": [
+      {
+        "numFloors": 15,
+        "numElevators": 3
+      }
+    ]
+  }
+  

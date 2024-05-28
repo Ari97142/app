@@ -3,6 +3,7 @@ export default {
   mount: {
     public: { url: '/', static: true },
     src: { url: '/dist' },
+    config: { url: '/config' },  
   },
   plugins: [
     [

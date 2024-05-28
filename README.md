@@ -1,24 +1,39 @@
-# New Project
+Project Overview
+Description
+This JavaScript/TypeScript project offers a detailed simulation of a building with multiple floors and elevators. Through meticulously designed classes, it facilitates the management, control, and simulation of elevator movements and interactions within the building environment.
 
-> ✨ Bootstrapped with Create Snowpack App (CSA).
+Classes
+Building
+The central orchestrator, managing the overarching structure and properties of the building. This includes overseeing the number of floors and elevators present.
 
-## Available Scripts
+Floor
+Representing individual floors within the building, this class handles crucial properties such as floor number and interactions with elevators.
 
-### npm start
+Elevator (Abstract Class)
+An abstract class governing the behavior and movement of each elevator. It encapsulates essential functionalities such as tracking the current position and servicing floor requests. Subclasses, namely LowerElevator, MiddleElevator, and UpperElevator, extend this class to specify elevator types and their respective starting positions within the building.
 
-Runs the app in the development mode.
-Open http://localhost:8080 to view it in the browser.
+LowerElevator, MiddleElevator, UpperElevator
+These subclasses inherit from the Elevator abstract class, each starting at a designated part of the building—lower, middle, or upper floors.
 
-The page will reload if you make edits.
-You will also see any lint errors in the console.
+ElevatorFactory
+Responsible for the dynamic creation of elevator instances. This factory class streamlines the process by abstracting away the creation logic, ensuring that each elevator is appropriately initialized according to its designated location within the building.
 
-### npm run build
+Elevator Algorithm: SCAN
+Efficiently locates the nearest available elevator to respond to a floor's call using a systematic approach:
 
-Builds a static copy of your site to the `build/` folder.
-Your app is ready to be deployed!
+Initialization: Calculate the time for each available elevator to reach the calling floor.
 
-**For the best production performance:** Add a build bundler plugin like [@snowpack/plugin-webpack](https://github.com/snowpackjs/snowpack/tree/main/plugins/plugin-webpack) or [snowpack-plugin-rollup-bundle](https://github.com/ParamagicDev/snowpack-plugin-rollup-bundle) to your `snowpack.config.mjs` config file.
+Calculation: Assess the current position and existing destinations of each elevator to compute the travel time based on distance and remaining tasks.
 
-### Q: What about Eject?
+Selection: Choose the elevator with the shortest calculated time as the nearest responder.
 
-No eject needed! Snowpack guarantees zero lock-in, and CSA strives for the same.
+Timer Start: Initiate a timer upon selecting the nearest elevator to simulate its arrival time.
+
+Initial Setup
+During building initialization, each elevator type (Lower, Middle, Upper) is strategically positioned across different parts of the building:
+
+LowerElevator: Commences operation from the lower floors.
+MiddleElevator: Initiates service from the middle floors.
+UpperElevator: Starts its journey from the upper floors.
+This meticulous setup ensures optimal coverage and efficiency in serving various parts of the building.
+
